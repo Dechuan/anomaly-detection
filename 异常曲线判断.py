@@ -30,10 +30,7 @@ def _dtw_distance(ts_a, ts_b, d = lambda x,y: abs(x-y)):
         return cost[-1, -1]
 def get_data(check_date):
     config={
-        "host":"22.122.32.86",
-        "user":"root",
-        "password":"BOChq999",
-        "database":"disk_db"
+          *
         }
     db=pymysql.connect(**config)
     cursor=db.cursor()
