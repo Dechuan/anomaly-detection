@@ -76,12 +76,12 @@ for key in idlist:
     comp_list=data_ser['pg_resp'].loc[data_ser['raid_id']==key]
     distance = _dtw_distance(base_list, comp_list)
     distance_dict[key]=distance
-#异常告警处理模块
-series_distance=pd.Series(list(distance_dict.values()),index=list(distance_dict.keys()))
-td=series_distance.describe()
-high = td['75%'] + 1.5 * (td['75%'] - td['25%'])
-low = td['25%'] - 1.5 * (td['75%'] - td['25%'])
-forbid_index =series_distance[(series_distance > high) | (series_distance < low)].index
-for id in forbid_index.values:
-    print(id+'的盘卷响应时间异常，请重点关注')
+    #异常告警处理模块
+    series_distance=pd.Series(list(distance_dict.values()),index=list(distance_dict.keys()))
+    td=series_distance.describe()
+    high = td['75%'] + 1.5 * (td['75%'] - td['25%'])
+    low = td['25%'] - 1.5 * (td['75%'] - td['25%'])
+    forbid_index =series_distance[(series_distance > high) | (series_distance < low)].index
+    for id in forbid_index.values:
+        print(id+'的盘卷响应时间异常，请重点关注')
 
